@@ -26,7 +26,7 @@ public class TestDatabaseServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String db_User = "clientManager";
-		String db_password = "********";
+		String db_password = "springjdbc";
 		String jdbcUrl = "jdbc:mysql://localhost:3306/client_records_manager?useSSL=false&serverTimezone=UTC";
 		String jdbcDriverClass = "com.mysql.jdbc.Driver";
 
