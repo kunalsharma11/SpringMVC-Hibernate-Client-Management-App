@@ -22,7 +22,6 @@ public class ClientDAOImpl implements ClientDAO {
 	//using transactional handles begining/closing transaction automatically
 	
 	@Override
-	@Transactional
 	public List<Client> getClients() {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
