@@ -19,7 +19,7 @@ public class ClientController {
 	@Autowired
 	private ClientDAO clientDAO;
 	
-	@GetMapping("/list")
+	@GetMapping("/list")			//new annotation for get request
 	public String listClients(Model model) {
 		
 		List<Client> clients = clientDAO.getClients();
