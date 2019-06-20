@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import clientManagerSpringMVC.dao.ClientDAO;
 import clientManagerSpringMVC.entity.Client;
 import clientManagerSpringMVC.service.ClientService;
 
@@ -32,4 +33,20 @@ public class ClientController {
 
 		return "clientsList";
 	}
+	
+	@GetMapping("/showAddForm")
+	public String showAddForm(Model model) {
+		Client client = new Client();
+		model.addAttribute("client", client);
+		return "addClientForm";
+	}
+	
+	@PostMapping("/addClient")
+	public String addClient(@ModelAttribute("client") Client client) {
+		
+		clientService.addClient(client);
+		
+		return "redirect:/client/list";
+	}
+	
 }

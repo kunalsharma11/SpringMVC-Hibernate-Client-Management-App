@@ -7,4 +7,6 @@ import clientManagerSpringMVC.entity.Client;
 public interface ClientService {
 	
 	public List<Client> getClients();
+	
+	public void addClient(Client client);
 }

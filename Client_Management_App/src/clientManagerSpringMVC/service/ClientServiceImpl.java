@@ -21,4 +21,12 @@ public class ClientServiceImpl implements ClientService {
 		return clientDAO.getClients();
 	}
 
+	@Override
+	@Transactional
+	public void addClient(Client client) {
+		
+		clientDAO.addClient(client);
+		
+	}
+
 }

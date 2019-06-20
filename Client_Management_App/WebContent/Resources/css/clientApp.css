@@ -27,6 +27,7 @@ tr:nth-child(even) {background: #FFFFFF}
 tr:nth-child(odd) {background: #ADFF2F}	
  
 #mainPage {width: 100%; margin-top: 0px; }
+#addClientPage {width: 100%; margin-top: 0px; }
 #header {width: 70%; background: #E6E6FA; margin-top: 0px; padding:15px 0px 15px 15px;}
 #header h2 {width: 100%; margin:auto; color: #1b1c1b;}
 #container {width: 100%; margin:auto}

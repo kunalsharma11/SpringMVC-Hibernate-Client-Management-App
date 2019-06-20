@@ -26,11 +26,21 @@ public class ClientDAOImpl implements ClientDAO {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		System.out.println("inside clientDao");
-		Query<Client> query = currentSession.createQuery("from Client", Client.class);
+		Query<Client> query = currentSession.createQuery("from Client order by firstName", Client.class);
 		List<Client> clients = query.getResultList();
 		
 		
 		return clients;
+	}
+
+	@Override
+	public void addClient(Client client) {
+		//get hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		
+		//save client
+		currentSession.save(client);
 	}
 
 }

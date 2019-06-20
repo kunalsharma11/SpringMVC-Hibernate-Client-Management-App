@@ -7,5 +7,7 @@ import clientManagerSpringMVC.entity.Client;
 public interface ClientDAO {
 	
 	public List<Client> getClients();
+
+	public void addClient(Client client);
 	
 }
