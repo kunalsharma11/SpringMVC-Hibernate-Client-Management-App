@@ -22,15 +22,22 @@
 	<th>Update</th>
 	</tr>
 	<c:forEach var="theClient" items="${client_Records}">
+	
 	<c:url var="editLink" value="/client/editClientInfo">
 	<c:param name="clientId" value="${theClient.id}"></c:param>
 	</c:url>
+	
+	<c:url var="removeLink" value="/client/removeClient">
+	<c:param name="clientId" value="${theClient.id}"></c:param>
+	</c:url>
+	
 	<tr>
 		<td> ${theClient.firstName}</td>
 		<td> ${theClient.lastName}</td>
 		<td> ${theClient.email}</td>
 		<td>
 			<a href="${editLink}">Edit</a> 
+			| <a href="${removeLink}">Remove</a>
 		</td>
 	</tr>
 	</c:forEach>
