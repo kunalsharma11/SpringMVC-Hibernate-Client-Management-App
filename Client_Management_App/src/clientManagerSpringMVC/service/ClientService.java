@@ -9,4 +9,6 @@ public interface ClientService {
 	public List<Client> getClients();
 	
 	public void addClient(Client client);
+
+	public Client getClient(int clientId);
 }

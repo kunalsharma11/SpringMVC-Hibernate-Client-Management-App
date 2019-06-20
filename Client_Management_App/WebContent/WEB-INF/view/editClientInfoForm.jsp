@@ -17,6 +17,7 @@
 		<h3>Add Client Information</h3>
 		<form:form action="addClient" modelAttribute="client" method="POST">
 		<form:hidden path="id" />   <!-- without this you will lose the context -->
+		
 		<table>
 			<tbody>
 				<tr>
@@ -33,7 +34,7 @@
 				</tr>
 				<tr>
 					<td><label></label></td>
-					<td><input type="submit" value="add" class="add" /></td>
+					<td><input type="submit" value="save" class="add" /></td>
 				</tr>
 			</tbody>
 		</table>

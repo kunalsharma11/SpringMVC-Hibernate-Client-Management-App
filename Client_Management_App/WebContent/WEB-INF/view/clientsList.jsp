@@ -18,12 +18,20 @@
 	<table id="table">
 	<tr><th>First Name</th>
 	<th>Last Name</th>
-	<th>Email</th></tr>
+	<th>Email</th>
+	<th>Update</th>
+	</tr>
 	<c:forEach var="theClient" items="${client_Records}">
+	<c:url var="editLink" value="/client/editClientInfo">
+	<c:param name="clientId" value="${theClient.id}"></c:param>
+	</c:url>
 	<tr>
 		<td> ${theClient.firstName}</td>
 		<td> ${theClient.lastName}</td>
 		<td> ${theClient.email}</td>
+		<td>
+			<a href="${editLink}">Edit</a> 
+		</td>
 	</tr>
 	</c:forEach>
 	</table>
