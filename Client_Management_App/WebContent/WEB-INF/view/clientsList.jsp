@@ -12,7 +12,10 @@
 <body>
 	<div id="mainPage">
 		<div id="header">
-			<h2><a href="${pageContext.request.contextPath}/client/list" class="a-header">Client Management App</a></h2>
+			<h2>
+				<a href="${pageContext.request.contextPath}/client/list"
+					class="a-header">Client Management App</a>
+			</h2>
 		</div>
 	</div>
 	<div id="container">

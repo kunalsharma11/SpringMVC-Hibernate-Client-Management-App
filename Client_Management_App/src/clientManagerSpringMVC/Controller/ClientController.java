@@ -19,8 +19,8 @@ import clientManagerSpringMVC.service.ClientService;
 public class ClientController {
 	// use this in service layer
 	// add client data access object(dao) here to connect client with clientdao
-//	@Autowired
-//	private ClientDAO clientDAO;
+	//	@Autowired
+	//	private ClientDAO clientDAO;
 
 	@Autowired
 	private ClientService clientService;
@@ -34,56 +34,52 @@ public class ClientController {
 
 		return "clientsList";
 	}
-	
+
 	@GetMapping("/showAddForm")
 	public String showAddForm(Model model) {
 		Client client = new Client();
 		model.addAttribute("client", client);
 		return "addClientForm";
 	}
-	
+
 	@PostMapping("/addClient")
 	public String addClient(@ModelAttribute("client") Client client) {
-		
+
 		clientService.addClient(client);
-		
+
 		return "redirect:/client/list";
 	}
-	
+
 	@GetMapping("/editClientInfo")
 	public String editClientInfo(@RequestParam("clientId") int clientId, Model model) {
-		
-		//get client from service layer
+
+		// get client from service layer
 		Client client = clientService.getClient(clientId);
-		
-		//set client as a model attribute to pre-populate the form
+
+		// set client as a model attribute to pre-populate the form
 		model.addAttribute("client", client);
-		
-		//send over to the form
-		
+
+		// send over to the form
+
 		return "editClientInfoForm";
 	}
-	
+
 	@GetMapping("/removeClient")
 	public String removeClient(@RequestParam("clientId") int clientId) {
-		
+
 		clientService.removeClient(clientId);
-		
-		
+
 		return "redirect:/client/list";
 	}
-	
+
 	@GetMapping("/search")
 	public String searchClient(@RequestParam("clientName") String clientName, Model model) {
-	
+
 		List<Client> client = clientService.searchClient(clientName);
-		
+
 		model.addAttribute("client_Records", client);
-		
-		
+
 		return "clientsList";
 	}
-	
-	
-	
+
 }

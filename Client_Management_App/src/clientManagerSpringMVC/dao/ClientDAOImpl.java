@@ -15,52 +15,48 @@ import clientManagerSpringMVC.entity.Client;
 @Repository
 public class ClientDAOImpl implements ClientDAO {
 
-	//add session factory from config file to this implementation
+	// add session factory from config file to this implementation
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	//using transactional handles begining/closing transaction automatically
-	
+
+	// using transactional handles begining/closing transaction automatically
+
 	@Override
 	public List<Client> getClients() {
-		
+
 		Session currentSession = sessionFactory.getCurrentSession();
-		System.out.println("inside clientDao");
+		// System.out.println("inside clientDao");
 		Query<Client> query = currentSession.createQuery("from Client order by firstName", Client.class);
 		List<Client> clients = query.getResultList();
-		
-		
+
 		return clients;
 	}
 
 	@Override
 	public void addClient(Client client) {
-		//get hibernate session
+		// get hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		
-		
-		//save or update client... hibernate method
+
+		// save or update client... hibernate method
 		currentSession.saveOrUpdate(client);
 	}
 
 	@Override
 	public Client getClient(int clientId) {
-		
-		//get hibernate session
+
+		// get hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		//retrieve client info from db using client id
+		// retrieve client info from db using client id
 		Client client = currentSession.get(Client.class, clientId);
-		
-		
-		
+
 		return client;
 	}
 
 	@Override
 	public void removeClient(int clientId) {
-		//get hibernate session
+		// get hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		//create query using client id and delete it
+		// create query using client id and delete it
 		Query query = currentSession.createQuery("delete from Client where id=:clientId");
 		query.setParameter("clientId", clientId);
 		query.executeUpdate();
@@ -68,23 +64,25 @@ public class ClientDAOImpl implements ClientDAO {
 
 	@Override
 	public List<Client> searchClient(String clientName) {
-		//get hibernate session
+		// get hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
-		//create query for based on client name which may be first or last name
-		
-		Query query = null;   //Query can be null, check for a valid query
-		
-		if(clientName != null && clientName.trim().length()>0) {
-			query = currentSession.createQuery("from Client where lower(firstName) like :searchName or lower(lastName) like :searchName", Client.class);
-			
-			query.setParameter("searchName", "%" +clientName.toLowerCase()+ "%");
-		}else {
+		// create query for based on client name which may be first or last name
+
+		Query query = null; // Query can be null, check for a valid query
+
+		if (clientName != null && clientName.trim().length() > 0) {
+			query = currentSession.createQuery(
+					"from Client where lower(firstName) like :searchName or lower(lastName) like :searchName",
+					Client.class);
+
+			query.setParameter("searchName", "%" + clientName.toLowerCase() + "%");
+		} else {
 			query = currentSession.createQuery("from Client", Client.class);
 		}
-			List<Client> clientList = query.getResultList();
-			
-			return clientList;
-		
+		List<Client> clientList = query.getResultList();
+
+		return clientList;
+
 	}
 
 }
