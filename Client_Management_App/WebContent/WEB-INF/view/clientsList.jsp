@@ -45,7 +45,7 @@
 	</table>
 	</br>
 	<input type="button" value="Add Client" onclick="window.location.href='showAddForm'; return false;"
-	class="add-button">
+	class="add-button bigbutton">
 	</div>
 	</div> 
 	
