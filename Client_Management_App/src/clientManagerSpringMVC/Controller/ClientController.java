@@ -73,6 +73,17 @@ public class ClientController {
 		return "redirect:/client/list";
 	}
 	
+	@GetMapping("/search")
+	public String searchClient(@RequestParam("clientName") String clientName, Model model) {
+	
+		List<Client> client = clientService.searchClient(clientName);
+		
+		model.addAttribute("client_Records", client);
+		
+		
+		return "clientsList";
+	}
+	
 	
 	
 }

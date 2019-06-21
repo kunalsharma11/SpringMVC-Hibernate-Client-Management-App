@@ -13,4 +13,6 @@ public interface ClientService {
 	public Client getClient(int clientId);
 
 	public void removeClient(int clientId);
+
+	public List<Client> searchClient(String clientName);
 }

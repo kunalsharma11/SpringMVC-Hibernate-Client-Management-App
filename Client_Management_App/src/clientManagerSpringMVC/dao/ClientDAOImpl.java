@@ -66,4 +66,25 @@ public class ClientDAOImpl implements ClientDAO {
 		query.executeUpdate();
 	}
 
+	@Override
+	public List<Client> searchClient(String clientName) {
+		//get hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		//create query for based on client name which may be first or last name
+		
+		Query query = null;   //Query can be null, check for a valid query
+		
+		if(clientName != null && clientName.trim().length()>0) {
+			query = currentSession.createQuery("from Client where lower(firstName) like :searchName or lower(lastName) like :searchName", Client.class);
+			
+			query.setParameter("searchName", "%" +clientName.toLowerCase()+ "%");
+		}else {
+			query = currentSession.createQuery("from Client", Client.class);
+		}
+			List<Client> clientList = query.getResultList();
+			
+			return clientList;
+		
+	}
+
 }

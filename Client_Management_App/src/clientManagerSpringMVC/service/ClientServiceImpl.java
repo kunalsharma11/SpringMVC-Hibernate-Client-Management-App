@@ -45,4 +45,13 @@ public class ClientServiceImpl implements ClientService {
 		
 	}
 
+	@Override
+	@Transactional
+	public List<Client> searchClient(String clientName) {
+		
+		
+		
+		return clientDAO.searchClient(clientName);
+	}
+
 }
