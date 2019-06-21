@@ -64,6 +64,15 @@ public class ClientController {
 		return "editClientInfoForm";
 	}
 	
+	@GetMapping("/removeClient")
+	public String removeClient(@RequestParam("clientId") int clientId) {
+		
+		clientService.removeClient(clientId);
+		
+		
+		return "redirect:/client/list";
+	}
+	
 	
 	
 }

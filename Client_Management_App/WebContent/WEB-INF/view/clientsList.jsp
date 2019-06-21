@@ -37,7 +37,8 @@
 		<td> ${theClient.email}</td>
 		<td>
 			<a href="${editLink}">Edit</a> 
-			| <a href="${removeLink}">Remove</a>
+			| <a href="${removeLink}" 
+			onclick="if (!(confirm('Are you sure you want to remove this Client?'))) return false">Remove</a>
 		</td>
 	</tr>
 	</c:forEach>

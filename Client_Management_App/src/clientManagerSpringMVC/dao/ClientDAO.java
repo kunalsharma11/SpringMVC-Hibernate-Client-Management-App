@@ -11,5 +11,7 @@ public interface ClientDAO {
 	public void addClient(Client client);
 
 	public Client getClient(int clientId);
+
+	public void removeClient(int clientId);
 	
 }

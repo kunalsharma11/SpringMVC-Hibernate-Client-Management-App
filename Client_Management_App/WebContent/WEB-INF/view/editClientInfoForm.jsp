@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Client</title>
+	<title>Edit Client Info</title>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/clientApp.css">
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/Resources/css/clientApp-addClient.css">  
 </head>
@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div id="container">
-		<h3>Add Client Information</h3>
+		<h3>Edit Client Information</h3>
 		<form:form action="addClient" modelAttribute="client" method="POST">
 		<form:hidden path="id" />   <!-- without this you will lose the context -->
 		

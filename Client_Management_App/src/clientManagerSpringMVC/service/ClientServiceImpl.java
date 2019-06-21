@@ -37,4 +37,12 @@ public class ClientServiceImpl implements ClientService {
 		return clientDAO.getClient(clientId);
 	}
 
+	@Override
+	@Transactional
+	public void removeClient(int clientId) {
+		
+		clientDAO.removeClient(clientId);
+		
+	}
+
 }
