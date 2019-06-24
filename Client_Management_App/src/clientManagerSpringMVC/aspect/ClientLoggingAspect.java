@@ -2,7 +2,9 @@ package clientManagerSpringMVC.aspect;
 
 import java.util.logging.Logger;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -15,17 +17,24 @@ public class ClientLoggingAspect {
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	//set point cut declarations
-	@Pointcut("execution(* clientManagerSpringMVC.Controller.*.*.(..))")
+	@Pointcut("execution(* clientManagerSpringMVC.Controller.*.*(..))")
 	private void forControllerPackage() {}
 	
-	@Pointcut("execution(* clientManagerSpringMVC.service.*.*.(..))")
+	@Pointcut("execution(* clientManagerSpringMVC.service.*.*(..))")
 	private void forServicePackage() {}
 	
-	@Pointcut("execution(* clientManagerSpringMVC.dao.*.*.(..))")
+	@Pointcut("execution(* clientManagerSpringMVC.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
 	@Pointcut("forControllerPackage() || forServicePackage() || forDaoPackage()")
 	private void forAppFlow() {}
 	
 	//add @Before advice
+	@Before("forAppFlow()")
+	public void before(JoinPoint joinPoint) {
+		String method = joinPoint.getSignature().toShortString();
+		logger.info("The method is: "+method);
+		
+	}
+	
 }
