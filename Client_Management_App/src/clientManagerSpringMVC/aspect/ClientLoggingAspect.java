@@ -3,6 +3,7 @@ package clientManagerSpringMVC.aspect;
 import java.util.logging.Logger;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -33,8 +34,26 @@ public class ClientLoggingAspect {
 	@Before("forAppFlow()")
 	public void before(JoinPoint joinPoint) {
 		String method = joinPoint.getSignature().toShortString();
-		logger.info("The method is: "+method);
+		logger.info("@Before The method is: "+method);
+		
+		//display arguments(here it will show id)
+		Object[] args = joinPoint.getArgs();
+		for(Object arg:args) {
+			logger.info("Arguments used in the method are: "+arg);
+		}
 		
 	}
+	
+	//add @After advice		
+	@AfterReturning(pointcut="forAppFlow()", returning="result")
+	 public void afterReturning(JoinPoint joinPoint, Object result) {
+		String method = joinPoint.getSignature().toShortString();
+		logger.info("@AfterReturning The method is: "+method);
+		
+		//display data returned
+		logger.info("Result: "+result);
+		
+	}
+	
 	
 }
